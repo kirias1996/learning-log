@@ -1,6 +1,6 @@
 ## 今日やったこと
-1. リーダブルコード10章読了：0.5h
-2. SpringBoot実装の振り返り:0.5h  
+1. Exercism(Calculator Conundrum)を解いた：2h
+2. SpringBoot実装の振り返り:1h  
 
 ## 学び  
 1. Javaで例外をthrowする際のCauseに任意の値を設定する方法
@@ -39,10 +39,6 @@
      - causeに new ArithmeticException()を定義する必要がある
    - 参考サイト
      - https://javadoc.io/doc/org.assertj/assertj-core/3.22.0/org/assertj/core/api/Assertions.html#assertThatExceptionOfType(java.lang.Class)
-   
-## 今後のTodo
-1. このコードで本当に実現したいことは何かを自問する。
-2. 下位問題を別メソッドに抽出する必要があるか積極的に考える。
 
 ## タグ
 #Java #例外ハンドリング　#Exercism
