@@ -23,7 +23,7 @@ jobs:
                             || new Date().toISOString().slice(0,10);
             const content  = (issue.body.match(/本文（Markdown OK）\s*\n+([\s\S]*)/) || [,'-'])[1].trim() || '-';
             const [y,m] = dateLine.split('-');
-            const file = `learning-log/daily-log/${y}${}/${dateLine}_issue-${issue.number}.md`;
+            const file = `learning-log/daily-log/${y}${m}/${dateLine}_issue-${issue.number}.md`;
             const md = `---\ndate: ${dateLine}\nsource: issue-${issue.number}\n---\n\n${content}\n`;
             core.setOutput('file', file);
             core.setOutput('content', md);
