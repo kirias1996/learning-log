@@ -1,22 +1,44 @@
 name: 学習ログ
 description: スマホから学習ログを投稿
-labels: [log]
+title: "📚 学習ログ: "
+labels:
+  - log
 body:
   - type: input
     id: date
     attributes:
       label: 日付
+      description: "例: 2025-10-14"
       placeholder: 2025-10-14
     validations:
       required: false
+
   - type: textarea
-    id: body
+    id: learning
     attributes:
-      label: 本文（Markdown OK）
+      label: 学び
+      description: 今日学んだことを箇条書きで書いてください
       placeholder: |
-        ## 学び
-        - 〜〜
-        ## Todo
-        - 〜〜
-        ## メモ
-        - 〜〜
+        - 〇〇について理解した
+        - エラーの原因を特定できた
+    validations:
+      required: false
+
+  - type: textarea
+    id: todo
+    attributes:
+      label: 明日のTodo
+      placeholder: |
+        - 〇〇を復習
+        - 〇〇のコードを修正
+    validations:
+      required: false
+
+  - type: textarea
+    id: memo
+    attributes:
+      label: メモ
+      placeholder: |
+        - 雑感や振り返りなどを自由に書く
+    validations:
+      required: false
