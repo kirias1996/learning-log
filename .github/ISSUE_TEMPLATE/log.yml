@@ -4,8 +4,11 @@ labels: [log]
 body:
   - type: input
     id: date
-    attributes: { label: 日付, placeholder: 2025-10-14 }
-    validations: { required: true }
+    attributes:
+      label: 日付
+      placeholder: 2025-10-14
+    validations:
+      required: false
   - type: textarea
     id: body
     attributes:
