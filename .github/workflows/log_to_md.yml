@@ -1,0 +1,42 @@
+name: Issue to Markdown (minimal)
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  issues: read
+jobs:
+  to-md:
+    if: contains(github.event.issue.labels.*.name, 'log')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build markdown (safe minimal)
+        id: build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            // 日付入力が無ければ今日にする
+            const dateLine = (issue.body.match(/日付\s*\n+([0-9-]{10})/) || [,''])[1]
+                            || new Date().toISOString().slice(0,10);
+            const content  = (issue.body.match(/本文（Markdown OK）\s*\n+([\s\S]*)/) || [,'-'])[1].trim() || '-';
+            const [y,m] = dateLine.split('-');
+            const file = `learning-log/daily-log/${ym}/${dateLine}_issue-${issue.number}.md`;
+            const md = `---\ndate: ${dateLine}\nsource: issue-${issue.number}\n---\n\n${content}\n`;
+            core.setOutput('file', file);
+            core.setOutput('content', md);
+
+      - name: Write & commit
+        env:
+          FILE: ${{ steps.build.outputs.file }}
+          CONTENT: ${{ steps.build.outputs.content }}
+        run: |
+          mkdir -p "$(dirname "$FILE")"
+          printf "%s" "$CONTENT" > "$FILE"
+          git config user.name  "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add "$FILE"
+          git commit -m "log: add $FILE" || echo "nothing to commit"
+          git push

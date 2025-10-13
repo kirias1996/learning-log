@@ -1,0 +1,19 @@
+name: 学習ログ
+description: スマホから学習ログを投稿
+labels: [log]
+body:
+  - type: input
+    id: date
+    attributes: { label: 日付, placeholder: 2025-10-14 }
+    validations: { required: true }
+  - type: textarea
+    id: body
+    attributes:
+      label: 本文（Markdown OK）
+      placeholder: |
+        ## 学び
+        - 〜〜
+        ## Todo
+        - 〜〜
+        ## メモ
+        - 〜〜
